@@ -1,9 +1,9 @@
-// import './Home.css';
+import Layout from '../../components/Layout';
 
 function Home() {
   return (
     <>
-      <div className='bg-red-300'>Home</div>
+      <Layout>Home</Layout>
     </>
   );
 }
