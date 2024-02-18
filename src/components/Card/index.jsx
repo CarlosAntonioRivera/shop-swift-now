@@ -13,6 +13,12 @@ const Card = (data) => {
     context.setProductToShow(productDetail);
   };
 
+  const addProductToCart = (productData) => {
+    context.setCount(context.count + 1);
+    context.setCartProducts([...context.cartProducts, productData]);
+    console.log(context.cartProducts);
+  };
+
   return (
     <div
       className='bg-white cursor-pointer w-56 h-60 rounded-lg'
@@ -29,7 +35,7 @@ const Card = (data) => {
         />
         <div
           className='absolute top-0 right-0 m-2'
-          onClick={() => context.setCount(context.count + 1)}
+          onClick={() => addProductToCart(data.data)}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
