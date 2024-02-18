@@ -105,7 +105,7 @@ const Navbar = () => {
             />
           </svg>
 
-          {context.count}
+          <div>{context.count}</div>
         </li>
       </ul>
     </nav>
