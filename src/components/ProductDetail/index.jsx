@@ -5,6 +5,8 @@ import './ProductDetail.css';
 const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
 
+  console.log(context.productToShow);
+
   return (
     <aside
       className={`${
@@ -33,6 +35,26 @@ const ProductDetail = () => {
           </svg>
         </div>
       </div>
+
+      <figure className='px-6'>
+        <img
+          className='w-full h-40 object-contain rounded-lg'
+          src={context.productToShow.image}
+          alt={context.productToShow.title}
+        />
+      </figure>
+
+      <p className='flex flex-col p-6 mb-2'>
+        <span className='font-medium text-2xl m'>
+          ${context.productToShow.price}
+        </span>
+        <span className='font-medium text-md line-clamp-2'>
+          {context.productToShow.title}
+        </span>
+        <span className='font-lg text-sm line-clamp-4 overflow-y-auto'>
+          {context.productToShow.description}
+        </span>
+      </p>
     </aside>
   );
 };
