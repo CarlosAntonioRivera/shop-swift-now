@@ -11,11 +11,15 @@ const Card = (data) => {
   const showProduct = (productDetail) => {
     context.openProductDetail();
     context.setProductToShow(productDetail);
+    context.closeCheckoutSideMenu();
   };
 
-  const addProductToCart = (productData) => {
+  const addProductToCart = (event, productData) => {
+    event.stopPropagation();
     context.setCount(context.count + 1);
     context.setCartProducts([...context.cartProducts, productData]);
+    context.openCheckoutSideMenu();
+    context.closeProductDetail();
     console.log(context.cartProducts);
   };
 
@@ -35,7 +39,7 @@ const Card = (data) => {
         />
         <div
           className='absolute top-0 right-0 m-2'
-          onClick={() => addProductToCart(data.data)}
+          onClick={(event) => addProductToCart(event, data.data)}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'

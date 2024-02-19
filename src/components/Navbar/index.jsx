@@ -96,7 +96,7 @@ const Navbar = () => {
             viewBox='0 0 24 24'
             strokeWidth={1.5}
             stroke='currentColor'
-            className='w-6 h-6 mx-2'
+            className='w-6 h-6'
           >
             <path
               strokeLinecap='round'
@@ -105,7 +105,7 @@ const Navbar = () => {
             />
           </svg>
 
-          <div>{context.count}</div>
+          <div className='mx-1'>{context.count}</div>
         </li>
       </ul>
     </nav>
