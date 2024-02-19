@@ -1,15 +1,18 @@
 import { useContext } from 'react';
 import { ShoppingCartContext } from '../../context';
+import OrderCard from '../../components/OrderCard';
 import './CheckoutSideMenu.css';
 
 const CheckoutSideMenu = () => {
   const context = useContext(ShoppingCartContext);
 
+  console.log(context.cartProducts);
+
   return (
     <aside
       className={`${
         context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'
-      } checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}
+      } checkout-side-menu scrollable-cards flex-col fixed right-0 border border-black rounded-lg bg-white`}
     >
       <div className='flex justify-between items-center px-5 py-4'>
         <h2 className='font-medium text-xl'>My Order</h2>
@@ -32,6 +35,17 @@ const CheckoutSideMenu = () => {
             />
           </svg>
         </div>
+      </div>
+
+      <div className='px-2'>
+        {context.cartProducts.map((product) => (
+          <OrderCard
+            key={product.id}
+            title={product.title}
+            imageURL={product.image}
+            price={product.price}
+          />
+        ))}
       </div>
     </aside>
   );
