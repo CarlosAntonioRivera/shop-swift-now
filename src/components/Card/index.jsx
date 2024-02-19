@@ -12,7 +12,7 @@ const Card = (data) => {
   const showProduct = (productDetail) => {
     context.openProductDetail();
     context.setProductToShow(productDetail);
-    context.closeCheckoutSideMenu();
+    // context.closeCheckoutSideMenu();
   };
 
   const addProductToCart = (event, productData) => {
