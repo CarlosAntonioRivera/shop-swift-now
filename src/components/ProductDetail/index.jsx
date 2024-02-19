@@ -49,7 +49,7 @@ const ProductDetail = () => {
         <span className='font-medium text-md line-clamp-2'>
           {context.productToShow.title}
         </span>
-        <span className='font-lg text-sm line-clamp-4 overflow-y-auto'>
+        <span className='font-lg text-sm line-clamp-5 overflow-y-auto'>
           {context.productToShow.description}
         </span>
       </p>
