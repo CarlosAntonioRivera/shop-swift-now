@@ -28,15 +28,28 @@ export const ShoppingCartProvider = ({ children }) => {
   // Get Products
   const [items, setItems] = useState(null);
 
+  // Get Products Filtered
+  const [filteredItems, setFilteredItems] = useState('');
+
   // Get Products in Input Search by title
   const [searchByTitle, setSearchByTitle] = useState('');
-  console.log(searchByTitle);
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products').then((response) =>
       response.json().then((data) => setItems(data))
     );
   }, []);
+
+  const filteredItemsByTitle = (items, searchByTitle) => {
+    return items?.filter((item) =>
+      item.title.toLowerCase().includes(searchByTitle.toLowerCase())
+    );
+  };
+
+  useEffect(() => {
+    if (searchByTitle)
+      setFilteredItems(filteredItemsByTitle(items, searchByTitle));
+  }, [items, searchByTitle]);
 
   return (
     <ShoppingCartContext.Provider
@@ -58,6 +71,7 @@ export const ShoppingCartProvider = ({ children }) => {
         items,
         setItems,
         searchByTitle,
+        filteredItems,
         setSearchByTitle,
       }}
     >
