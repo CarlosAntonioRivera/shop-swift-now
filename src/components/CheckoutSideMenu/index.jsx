@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCartContext } from '../../context';
 import OrderCard from '../../components/OrderCard';
-import { totalPrice } from '../../utils';
+import { totalPrice, currentDate } from '../../utils';
 import './CheckoutSideMenu.css';
 
 const CheckoutSideMenu = () => {
@@ -17,7 +17,7 @@ const CheckoutSideMenu = () => {
 
   const handleCheckout = () => {
     const orderToAdd = {
-      data: '20.02.2024',
+      data: currentDate(),
       products: context.cartProducts,
       totalProducts: context.cartProducts.length,
       totalPrice: totalPrice(context.cartProducts),

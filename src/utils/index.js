@@ -11,3 +11,14 @@ export const totalPrice = (products) => {
 
   return sum;
 };
+
+/**
+ * This function determines the date current
+ *
+ * @returns {date} date
+ */
+
+export const currentDate = () => {
+  const date = new Date().toLocaleDateString();
+  return date;
+};
