@@ -38,7 +38,7 @@ const OrderCard = (props) => {
           />
         </figure>
 
-        <p className='text-sm font-light mx-1'>{title}</p>
+        <p className='text-sm font-light mx-2'>{title}</p>
       </div>
 
       <div className='flex items-center gap-2'>
