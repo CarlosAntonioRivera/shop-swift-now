@@ -104,6 +104,7 @@ export const ShoppingCartProvider = ({ children }) => {
         filterBy(null, items, searchByCategory, searchByCategory)
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items, searchByTitle, searchByCategory]);
 
   return (

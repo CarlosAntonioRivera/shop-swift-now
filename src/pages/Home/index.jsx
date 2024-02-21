@@ -1,8 +1,8 @@
 import Layout from '../../components/Layout';
 import Card from '../../components/Card';
 import ProductDetail from '../../components/ProductDetail';
-import { ShoppingCartContext } from '../../context';
 import { useContext } from 'react';
+import { ShoppingCartContext } from '../../context';
 
 function Home() {
   const context = useContext(ShoppingCartContext);
@@ -16,7 +16,13 @@ function Home() {
         />
       ));
     } else {
-      return <div>No products found with that title</div>;
+      return (
+        <>
+          <p className='col-start-1 col-end-5 text-center p-20 font-normal text-2xl text-black/60'>
+            No products found with that title
+          </p>
+        </>
+      );
     }
   };
 
@@ -30,11 +36,11 @@ function Home() {
         <input
           type='text'
           placeholder='Search a product'
-          className='rounded-lg border border-black w-80 p-4 mb-6'
+          className='rounded-lg border border-black w-96 p-4 mb-6 focus:placeholder:text-transparent'
           onChange={(event) => context.setSearchByTitle(event.target.value)}
         />
 
-        <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
+        <div className='grid gap-5 grid-cols-4 place-content-center w-full max-w-screen-lg'>
           {renderView()}
         </div>
         <ProductDetail />

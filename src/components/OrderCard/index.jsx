@@ -1,3 +1,5 @@
+import { XMarkIcon } from '@heroicons/react/24/outline';
+
 const OrderCard = (props) => {
   const { id, title, imageURL, price, handleDelete } = props;
 
@@ -5,32 +7,17 @@ const OrderCard = (props) => {
 
   if (handleDelete) {
     renderXIcon = (
-      <div
-        className='cursor-pointer'
+      <XMarkIcon
+        className='h-6 w-6 cursor-pointer'
         onClick={() => handleDelete(id)}
-      >
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          strokeWidth={1.5}
-          stroke='currentColor'
-          className='w-6 h-6'
-        >
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            d='M6 18 18 6M6 6l12 12'
-          />
-        </svg>
-      </div>
+      />
     );
   }
 
   return (
-    <div className='flex justify-between items-center mb-3 bg-fuchsia-400 h-24 px-2'>
+    <div className='flex justify-between items-center mb-3 rounded-lg bg-[#e5e7eb] h-24 px-2'>
       <div className='flex items-center gap-2'>
-        <figure className='w-20 h-20 bg-green-300'>
+        <figure className='w-20 h-20'>
           <img
             className='w-full h-full rounded-lg object-contain'
             src={imageURL}
