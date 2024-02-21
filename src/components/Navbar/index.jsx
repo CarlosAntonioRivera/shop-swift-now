@@ -79,7 +79,10 @@ const Navbar = () => {
             Sign In
           </NavLink>
         </li>
-        <li className='flex'>
+        <li
+          className='flex cursor-pointer'
+          onClick={() => context.openCheckoutSideMenu()}
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'

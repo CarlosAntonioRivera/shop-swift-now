@@ -1,5 +1,5 @@
 const OrdersCard = (props) => {
-  const { totalPrice, totalProducts, currentDate } = props;
+  const { totalPrice, totalProducts, date } = props;
 
   return (
     <div className='flex justify-between items-center bg-red-500 border-black rounded-lg h-24 w-80 p-4 mb-4'>
@@ -20,7 +20,7 @@ const OrdersCard = (props) => {
             />
           </svg>
 
-          <span className='mx-2 font-light'>{console.log(currentDate)}</span>
+          <span className='mx-2 font-light'>{date}</span>
         </p>
 
         <p className='flex flex-row items-center m-2'>

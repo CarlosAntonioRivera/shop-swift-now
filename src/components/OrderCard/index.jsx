@@ -28,9 +28,9 @@ const OrderCard = (props) => {
   }
 
   return (
-    <div className='flex justify-between items-center mb-3 bg-red-500 h-24 px-2'>
+    <div className='flex justify-between items-center mb-3 bg-fuchsia-400 h-24 px-2'>
       <div className='flex items-center gap-2'>
-        <figure className='w-20 h-20'>
+        <figure className='w-20 h-20 bg-green-300'>
           <img
             className='w-full h-full rounded-lg object-contain'
             src={imageURL}
@@ -38,7 +38,7 @@ const OrderCard = (props) => {
           />
         </figure>
 
-        <p className='text-sm font-light mx-2'>{title}</p>
+        <p className='text-sm font-light mx-2 line-clamp-3 w-28'>{title}</p>
       </div>
 
       <div className='flex items-center gap-2'>

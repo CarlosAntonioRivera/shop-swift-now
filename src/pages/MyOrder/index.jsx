@@ -39,10 +39,10 @@ function MyOrder() {
             </svg>
           </Link>
 
-          <h1>MyOrder</h1>
+          <h1>My Order</h1>
         </div>
 
-        <div className='flex flex-col w-96'>
+        <div className='flex flex-col w-80'>
           {context.order?.[index]?.products.map((product) => (
             <OrderCard
               key={product.id}
