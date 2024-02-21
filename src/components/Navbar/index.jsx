@@ -95,7 +95,7 @@ const Navbar = () => {
             />
           </svg>
 
-          <div className='mx-1'>{context.count}</div>
+          <div className='mx-1'>{context.cartProducts.length}</div>
         </li>
       </ul>
     </nav>
