@@ -8,6 +8,16 @@ export const totalPrice = (products) => {
   let sum = 0;
 
   products.forEach((product) => (sum += product.price));
+  return sum.toFixed(2);
+};
 
-  return sum;
+/**
+ * This function determines the date current
+ *
+ * @returns {date} date
+ */
+
+export const currentDate = () => {
+  const date = new Date().toLocaleDateString();
+  return date;
 };
