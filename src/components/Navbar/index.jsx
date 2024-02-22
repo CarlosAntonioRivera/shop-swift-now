@@ -8,6 +8,14 @@ const Navbar = () => {
 
   const activeStyle = 'underline underline-offset-4';
 
+  const handleSignOut = () => {
+    const stringifiedSignOut = JSON.stringify(true);
+
+    localStorage.setItem('sign-out', stringifiedSignOut);
+
+    context.stringifiedSignOut(true);
+  };
+
   return (
     <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 font-light bg-[#d1d5db]'>
       <ul className='flex items-center gap-5'>
@@ -76,6 +84,7 @@ const Navbar = () => {
           <NavLink
             to='/sign-in'
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
+            onClick={() => handleSignOut()}
           >
             Sign In
           </NavLink>
