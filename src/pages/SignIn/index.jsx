@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { ShoppingCartContext } from '../../context';
 import Layout from '../../components/Layout';
 
@@ -7,6 +7,9 @@ function SignIn() {
   const context = useContext(ShoppingCartContext);
 
   const [view, setView] = useState('user-info');
+
+  // Registration Form
+  const form = useRef(null);
 
   // Account
   const account = localStorage.getItem('account');
@@ -21,9 +24,20 @@ function SignIn() {
     : true;
   const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState;
 
+  const createAnAccount = () => {
+    const formData = new FormData(form.current);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      password: formData.get('password'),
+    };
+
+    console.log(data);
+  };
+
   const renderLogIn = () => {
     return (
-      <div className='flex flex-col w-80'>
+      <div className='flex flex-col w-80 p-5 bg-[#e5e7eb] rounded-lg'>
         <p>
           <span className='font-light text-sm'>Email: </span>
           <span>{parsedAccount?.email}</span>
@@ -54,7 +68,7 @@ function SignIn() {
 
         <button
           className='border border-black disabled:text-black/40 disabled:border-black/40 rounded-lg mt-6 py-3'
-          onClick={() => setView('crete-user-info')}
+          onClick={() => setView('create-user-info')}
           disabled={hasUserAnAccount}
         >
           Sign up
@@ -65,60 +79,73 @@ function SignIn() {
 
   const renderCreateUserInfo = () => {
     return (
-      <form>
-        <div className='grid gap-5 grid-cols-2 place-content-center w-full max-w-screen-lg rounded-lg p-5 mb-2 text-lg font-normal bg-[#d1d5db]'>
-          <div>
-            <p>Name</p>
-            <input className='rounded-lg border border-black w-96 p-4 mb-6 focus:placeholder:text-transparent' />
-          </div>
-          <div>
-            <p>Last Name</p>
-            <input className='rounded-lg border border-black w-96 p-4 mb-6 focus:placeholder:text-transparent' />
-          </div>
-          <div>
-            <p>Email</p>
-            <input
-              type='mail'
-              className='rounded-lg border border-black w-96 p-4 mb-6 focus:placeholder:text-transparent'
-            />
-          </div>
-          <div>
-            <p>Birthdate</p>
-            <input
-              type='date'
-              className='rounded-lg border border-black w-96 p-4 mb-6 focus:placeholder:text-transparent'
-            />
-          </div>
-          <div>
-            <p>Password</p>
-            <input
-              type='password'
-              className='rounded-lg border border-black w-96 p-4 mb-6 focus:placeholder:text-transparent'
-            />
-          </div>
-          <div>
-            <p>Confirm Password</p>
-            <input
-              type='password'
-              className='rounded-lg border border-black w-96 p-4 mb-6 focus:placeholder:text-transparent'
-            />
-          </div>
-          <div className='col-start-1 col-end-3'>
-            <button
-              className='bg-black py-3 text-white w-full rounded-lg mb-4'
-              type='submit'
-            >
-              Register
-            </button>
-          </div>
+      <form
+        ref={form}
+        className='flex flex-col gap-4 w-96 p-5 bg-[#d1d5db] rounded-lg'
+      >
+        <div className='flex flex-col gap-1'>
+          <label
+            htmlFor='name'
+            className='font-normal text-sm'
+          >
+            Name:
+          </label>
+          <input
+            type='text'
+            id='name'
+            name='name'
+            defaultValue={parsedAccount?.name}
+            placeholder='Armando Casas'
+            className='rounded-lg border border-black placeholder:font-light placeholder:text-sm placeholder:text-black/60 focus:outline-none focus:placeholder:text-transparent py-2 px-4'
+          />
         </div>
+        <div className='flex flex-col gap-1'>
+          <label
+            htmlFor='email'
+            className='font-normal text-sm'
+          >
+            Email:
+          </label>
+          <input
+            type='text'
+            id='email'
+            name='email'
+            defaultValue={parsedAccount?.email}
+            placeholder='hi@example.com'
+            className='rounded-lg border border-black placeholder:font-light placeholder:text-sm placeholder:text-black/60 focus:outline-none focus:placeholder:text-transparent py-2 px-4'
+          />
+        </div>
+        <div className='flex flex-col gap-1'>
+          <label
+            htmlFor='password'
+            className='font-normal text-sm'
+          >
+            Password:
+          </label>
+          <input
+            type='password'
+            id='password'
+            name='password'
+            defaultValue={parsedAccount?.password}
+            placeholder='*******'
+            className='rounded-lg border border-black placeholder:font-light placeholder:text-sm placeholder:text-black/60 focus:outline-none focus:placeholder:text-transparent py-2 px-4'
+          />
+        </div>
+
+        <Link to='/'>
+          <button
+            className='bg-black text-white w-full rounded-lg py-3'
+            onClick={() => createAnAccount()}
+          >
+            Create
+          </button>
+        </Link>
       </form>
     );
   };
 
-  const renderView = () => {
+  const renderView = () =>
     view === 'create-user-info' ? renderCreateUserInfo() : renderLogIn();
-  };
 
   return (
     <>
