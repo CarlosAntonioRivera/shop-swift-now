@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useContext, useRef, useState } from 'react';
 import { ShoppingCartContext } from '../../context';
 import Layout from '../../components/Layout';
@@ -24,6 +24,20 @@ function SignIn() {
     : true;
   const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState;
 
+  const handleSignIn = () => {
+    const stringifiedSignOut = JSON.stringify(false);
+    localStorage.setItem('sign-out', stringifiedSignOut);
+    context.setSignOut(false);
+
+    //Redirect
+    return (
+      <Navigate
+        replace
+        to={'/'}
+      />
+    );
+  };
+
   const createAnAccount = () => {
     const formData = new FormData(form.current);
     const data = {
@@ -32,7 +46,13 @@ function SignIn() {
       password: formData.get('password'),
     };
 
-    console.log(data);
+    // Create account
+    const stringifiedAccount = JSON.stringify(data);
+    localStorage.setItem('account', stringifiedAccount);
+    context.setAccount(data);
+
+    // Sign In
+    handleSignIn();
   };
 
   const renderLogIn = () => {
@@ -50,7 +70,7 @@ function SignIn() {
         <Link to='/'>
           <button
             className='bg-black disabled:bg-black/40 text-white w-full rounded-lg py-3 mt-4 mb-2'
-            // onClick={ () => setView('crete-user-info') }
+            onClick={() => handleSignIn()}
             disabled={!hasUserAnAccount}
           >
             Log in
