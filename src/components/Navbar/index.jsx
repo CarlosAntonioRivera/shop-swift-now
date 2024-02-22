@@ -8,12 +8,72 @@ const Navbar = () => {
 
   const activeStyle = 'underline underline-offset-4';
 
+  // Sign Out
+  const signOut = localStorage.getItem('sign-out');
+  const parsedSignOut = JSON.parse(signOut);
+  const isUserSignOut = context.signOut || parsedSignOut;
+
   const handleSignOut = () => {
     const stringifiedSignOut = JSON.stringify(true);
 
     localStorage.setItem('sign-out', stringifiedSignOut);
 
     context.stringifiedSignOut(true);
+  };
+
+  const renderView = () => {
+    if (isUserSignOut) {
+      return (
+        <li>
+          <NavLink
+            to='/sign-in'
+            className={({ isActive }) => (isActive ? activeStyle : undefined)}
+            onClick={() => handleSignOut()}
+          >
+            Sign out
+          </NavLink>
+        </li>
+      );
+    } else {
+      return (
+        <>
+          <li className='text-black/60'>carlosrivera@gmail.com</li>
+          <li>
+            <NavLink
+              to='/my-orders'
+              className={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              My Orders
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to='/my-account'
+              className={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              My Account
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to='/sign-in'
+              className={({ isActive }) => (isActive ? activeStyle : undefined)}
+              onClick={() => handleSignOut()}
+            >
+              Sign out
+            </NavLink>
+          </li>
+          <li
+            className='flex cursor-pointer'
+            onClick={() => context.openCheckoutSideMenu()}
+          >
+            <ShoppingCartIcon className='h-6 w-6' />
+
+            <div className='mx-1'>{context.cartProducts.length}</div>
+          </li>
+        </>
+      );
+    }
   };
 
   return (
@@ -63,39 +123,9 @@ const Navbar = () => {
       </ul>
 
       <ul className='flex items-center gap-5'>
-        <li className='text-black/60'>carlosrivera@gmail.com</li>
+        {renderView()}
         <li>
-          <NavLink
-            to='/my-orders'
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            My Orders
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to='/my-account'
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            My Account
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to='/sign-in'
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            onClick={() => handleSignOut()}
-          >
-            Sign In
-          </NavLink>
-        </li>
-        <li
-          className='flex cursor-pointer'
-          onClick={() => context.openCheckoutSideMenu()}
-        >
           <ShoppingCartIcon className='h-6 w-6' />
-
-          <div className='mx-1'>{context.cartProducts.length}</div>
         </li>
       </ul>
     </nav>
