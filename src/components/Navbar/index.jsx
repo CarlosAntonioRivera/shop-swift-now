@@ -18,21 +18,26 @@ const Navbar = () => {
 
     localStorage.setItem('sign-out', stringifiedSignOut);
 
-    context.stringifiedSignOut(true);
+    context.setSignOut(true);
   };
 
   const renderView = () => {
     if (isUserSignOut) {
       return (
-        <li>
-          <NavLink
-            to='/sign-in'
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            onClick={() => handleSignOut()}
-          >
-            Sign out
-          </NavLink>
-        </li>
+        <>
+          <li>
+            <NavLink
+              to='/sign-in'
+              className={({ isActive }) => (isActive ? activeStyle : undefined)}
+              onClick={() => handleSignOut()}
+            >
+              Sign out
+            </NavLink>
+          </li>
+          <li className='flex items-center'>
+            <ShoppingCartIcon className='h-6 w-6' />
+          </li>
+        </>
       );
     } else {
       return (
@@ -122,12 +127,7 @@ const Navbar = () => {
         </li>
       </ul>
 
-      <ul className='flex items-center gap-5'>
-        {renderView()}
-        <li>
-          <ShoppingCartIcon className='h-6 w-6' />
-        </li>
-      </ul>
+      <ul className='flex items-center gap-5'>{renderView()}</ul>
     </nav>
   );
 };
