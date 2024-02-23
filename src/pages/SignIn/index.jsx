@@ -28,7 +28,7 @@ function SignIn() {
     const stringifiedSignOut = JSON.stringify(false);
     localStorage.setItem('sign-out', stringifiedSignOut);
     context.setSignOut(false);
-
+    context.closeProductDetail();
     //Redirect
     return (
       <Navigate

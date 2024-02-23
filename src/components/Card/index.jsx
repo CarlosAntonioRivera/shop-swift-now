@@ -1,6 +1,7 @@
 import { PlusCircleIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
 import { useContext } from 'react';
 import { ShoppingCartContext } from '../../context';
+import { NavLink } from 'react-router-dom';
 
 const Card = (data) => {
   // Card . Change first letter to uppercase
@@ -9,6 +10,11 @@ const Card = (data) => {
 
   // Context .
   const context = useContext(ShoppingCartContext);
+
+  // Sign Out
+  const signOut = localStorage.getItem('sign-out');
+  const parsedSignOut = JSON.parse(signOut);
+  const isUserSignOut = context.signOut || parsedSignOut;
 
   const showProduct = (productDetail) => {
     context.openProductDetail();
@@ -24,19 +30,27 @@ const Card = (data) => {
   };
 
   const renderIcon = (id) => {
-    const isInCart =
-      context.cartProducts.filter((product) => product.id === id).length > 0;
+    if (!isUserSignOut) {
+      const isInCart =
+        context.cartProducts.filter((product) => product.id === id).length > 0;
 
-    if (isInCart) {
-      return (
-        <CheckCircleIcon className='h-6 w-6 text-white absolute bottom-0 right-0 m-1 bg-black rounded-full' />
-      );
+      if (isInCart) {
+        return (
+          <CheckCircleIcon className='h-6 w-6 text-white absolute bottom-0 right-0 m-1 bg-black rounded-full' />
+        );
+      } else {
+        return (
+          <PlusCircleIcon
+            className='h-6 w-6 absolute bottom-0 right-0 m-1'
+            onClick={(event) => addProductToCart(event, data.data)}
+          />
+        );
+      }
     } else {
       return (
-        <PlusCircleIcon
-          className='h-6 w-6 absolute bottom-0 right-0 m-1'
-          onClick={(event) => addProductToCart(event, data.data)}
-        />
+        <NavLink to={'/sign-in'}>
+          <PlusCircleIcon className='h-6 w-6 absolute bottom-0 right-0 m-1' />
+        </NavLink>
       );
     }
   };

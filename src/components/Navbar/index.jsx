@@ -13,12 +13,18 @@ const Navbar = () => {
   const parsedSignOut = JSON.parse(signOut);
   const isUserSignOut = context.signOut || parsedSignOut;
 
+  // Account
+  const account = localStorage.getItem('account');
+  const parsedAccount = JSON.parse(account);
+
   const handleSignOut = () => {
     const stringifiedSignOut = JSON.stringify(true);
 
     localStorage.setItem('sign-out', stringifiedSignOut);
 
     context.setSignOut(true);
+    context.closeProductDetail();
+    context.closeCheckoutSideMenu();
   };
 
   const renderView = () => {
@@ -42,7 +48,7 @@ const Navbar = () => {
     } else {
       return (
         <>
-          <li className='text-black/60'>carlosrivera@gmail.com</li>
+          <li className='text-black/60'>{parsedAccount?.email}</li>
           <li>
             <NavLink
               to='/my-orders'
@@ -85,7 +91,7 @@ const Navbar = () => {
     <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 font-light bg-[#d1d5db]'>
       <ul className='flex items-center gap-5'>
         <li className='font-semibold text-xl'>
-          <NavLink to='/'>ShopNow</NavLink>
+          <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>ShopNow</NavLink>
         </li>
         <li>
           <NavLink
