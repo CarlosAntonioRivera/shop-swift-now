@@ -87,7 +87,9 @@ const Navbar = () => {
     <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 font-light bg-[#d1d5db]'>
       <ul className='flex items-center gap-5'>
         <li className='font-semibold text-xl'>
-          <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>ShopNow</NavLink>
+          <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>
+            ShopSwiftNow
+          </NavLink>
         </li>
         <li>
           <NavLink
