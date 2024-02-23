@@ -1,7 +1,8 @@
-import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { useContext } from 'react';
-import { ShoppingCartContext } from '../../context';
 import { NavLink } from 'react-router-dom';
+import { ShoppingCartContext } from '../../context';
+import { ShoppingCartIcon } from '@heroicons/react/24/outline';
+import ShoppingCart from '../ShoppingCart';
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext);
@@ -74,13 +75,8 @@ const Navbar = () => {
               Sign out
             </NavLink>
           </li>
-          <li
-            className='flex cursor-pointer'
-            onClick={() => context.openCheckoutSideMenu()}
-          >
-            <ShoppingCartIcon className='h-6 w-6' />
-
-            <div className='mx-1'>{context.cartProducts.length}</div>
+          <li className='flex items-center'>
+            <ShoppingCart />
           </li>
         </>
       );
