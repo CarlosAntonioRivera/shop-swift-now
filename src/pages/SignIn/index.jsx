@@ -87,7 +87,7 @@ function SignIn() {
         </div>
 
         <button
-          className='border border-black disabled:text-black/40 disabled:border-black/40 rounded-lg mt-6 py-3'
+          className='border border-black bg-white disabled:text-black/40 disabled:border-black/40 rounded-lg mt-6 py-3'
           onClick={() => setView('create-user-info')}
           disabled={hasUserAnAccount}
         >
