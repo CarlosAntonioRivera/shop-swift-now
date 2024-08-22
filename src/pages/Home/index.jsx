@@ -27,25 +27,23 @@ function Home() {
   };
 
   return (
-    <>
-      <Layout>
-        <div className='flex items-center justify-center relative w-80 mb-4'>
-          <h1 className='font-medium text-2xl'>Exclusive Products</h1>
-        </div>
+    <Layout>
+      <div className='flex items-center justify-center relative w-80 mb-4'>
+        <h1 className='font-medium text-2xl'>Exclusive Products</h1>
+      </div>
 
-        <input
-          type='text'
-          placeholder='Search a product'
-          className='rounded-lg border border-black w-96 p-4 mb-6 focus:placeholder:text-transparent'
-          onChange={(event) => context.setSearchByTitle(event.target.value)}
-        />
+      <input
+        type='text'
+        placeholder='Search a product'
+        className='rounded-lg border border-black w-96 p-4 mb-6 focus:placeholder:text-transparent'
+        onChange={(event) => context.setSearchByTitle(event.target.value)}
+      />
 
-        <div className='grid gap-5 grid-cols-4 place-content-center w-full max-w-screen-lg'>
-          {renderView()}
-        </div>
-        <ProductDetail />
-      </Layout>
-    </>
+      <div className='grid grid-cols-auto-fill-minmax gap-4 justify-items-center  w-full p-5'>
+        {renderView()}
+      </div>
+      <ProductDetail />
+    </Layout>
   );
 }
 
