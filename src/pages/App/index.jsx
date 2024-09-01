@@ -18,14 +18,13 @@ import './App.css';
 const AppRoutes = () => {
   const context = useContext(ShoppingCartContext);
 
-  // Sign Out
-  const signOut = localStorage.getItem('sign-out');
-  const parsedSignOut = JSON.parse(signOut);
-  const isUserSignOut = context.signOut || parsedSignOut;
-
   // Account
   const account = localStorage.getItem('account');
   const parsedAccount = JSON.parse(account);
+
+  // Sign Out
+  const signOut = localStorage.getItem('sign-out');
+  const parsedSignOut = JSON.parse(signOut);
 
   // Has an account
   const noAccountInLocalStorage = parsedAccount
@@ -35,71 +34,76 @@ const AppRoutes = () => {
     ? Object.keys(context.account).length === 0
     : true;
   const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState;
+  const isUserSignOut = context.signOut || parsedSignOut;
 
   let routes = useRoutes([
-    { path: '/', element: <Home /> },
-    { path: '/clothes', element: <Home /> },
-    { path: '/jewelery', element: <Home /> },
-    { path: '/electronics', element: <Home /> },
     {
-      path: '/my-account',
+      path: '/',
       element:
         hasUserAnAccount && !isUserSignOut ? (
-          <MyAccount />
+          <Home />
         ) : (
           <Navigate
             replace
-            to={'sign-in'}
+            to={'/sign-in'}
           />
         ),
+    },
+    {
+      path: '/clothes',
+      element:
+        hasUserAnAccount && !isUserSignOut ? (
+          <Home />
+        ) : (
+          <Navigate
+            replace
+            to={'/sign-in'}
+          />
+        ),
+    },
+    {
+      path: '/jewelery',
+      element:
+        hasUserAnAccount && !isUserSignOut ? (
+          <Home />
+        ) : (
+          <Navigate
+            replace
+            to={'/sign-in'}
+          />
+        ),
+    },
+    {
+      path: '/electronics',
+      element:
+        hasUserAnAccount && !isUserSignOut ? (
+          <Home />
+        ) : (
+          <Navigate
+            replace
+            to={'/sign-in'}
+          />
+        ),
+    },
+    {
+      path: '/my-account',
+      element: <MyAccount />,
     },
     {
       path: '/my-order',
-      element:
-        hasUserAnAccount && !isUserSignOut ? (
-          <MyOrder />
-        ) : (
-          <Navigate
-            replace
-            to={'sign-in'}
-          />
-        ),
+      element: <MyOrder />,
     },
     {
       path: '/my-orders',
-      element:
-        hasUserAnAccount && !isUserSignOut ? (
-          <MyOrders />
-        ) : (
-          <Navigate
-            replace
-            to={'sign-in'}
-          />
-        ),
+      element: <MyOrders />,
     },
     {
       path: '/my-orders/last',
-      element:
-        hasUserAnAccount && !isUserSignOut ? (
-          <MyOrder />
-        ) : (
-          <Navigate
-            replace
-            to={'sign-in'}
-          />
-        ),
+      element: <MyOrder />,
     },
     {
       path: '/my-orders/:id',
-      element:
-        hasUserAnAccount && !isUserSignOut ? (
-          <MyOrder />
-        ) : (
-          <Navigate
-            replace
-            to={'sign-in'}
-          />
-        ),
+      element: <MyOrder />,
     },
     { path: '/sign-in', element: <SignIn /> },
     { path: '/*', element: <NotFound /> }, // Cualquier otra ruta: /*

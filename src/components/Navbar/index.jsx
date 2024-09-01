@@ -18,6 +18,15 @@ const Navbar = () => {
   const account = localStorage.getItem('account');
   const parsedAccount = JSON.parse(account);
 
+  // Has an account
+  const noAccountInLocalStorage = parsedAccount
+    ? Object.keys(parsedAccount).length === 0
+    : true;
+  const noAccountInLocalState = context.account
+    ? Object.keys(context.account).length === 0
+    : true;
+  const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState;
+
   const handleSignOut = () => {
     const stringifiedSignOut = JSON.stringify(true);
 
@@ -29,24 +38,7 @@ const Navbar = () => {
   };
 
   const renderView = () => {
-    if (isUserSignOut) {
-      return (
-        <>
-          <li>
-            <NavLink
-              to='/sign-in'
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
-              onClick={() => handleSignOut()}
-            >
-              Sign out
-            </NavLink>
-          </li>
-          <li className='flex items-center'>
-            <ShoppingCartIcon className='h-6 w-6' />
-          </li>
-        </>
-      );
-    } else {
+    if (hasUserAnAccount && !isUserSignOut) {
       return (
         <>
           <li className='text-black/60'>{parsedAccount?.email}</li>
@@ -77,6 +69,23 @@ const Navbar = () => {
           </li>
           <li className='flex items-center'>
             <ShoppingCart />
+          </li>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <li>
+            <NavLink
+              to='/sign-in'
+              className={({ isActive }) => (isActive ? activeStyle : undefined)}
+              onClick={() => handleSignOut()}
+            >
+              Sign in
+            </NavLink>
+          </li>
+          <li className='flex items-center'>
+            <ShoppingCartIcon className='h-6 w-6' />
           </li>
         </>
       );
