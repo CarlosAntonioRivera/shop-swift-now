@@ -8,7 +8,7 @@ export default {
       },
       gridTemplateColumns: {
         // Personalized clase for the products grid
-        'auto-fill-minmax': 'repeat(auto-fill, minmax(240px, 1fr))',
+        'auto-fit-minmax': 'repeat(auto-fit, minmax(min(240px, 100%), 1fr))',
       },
     },
   },
