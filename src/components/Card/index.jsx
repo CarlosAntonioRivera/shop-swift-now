@@ -2,7 +2,6 @@ import { PlusCircleIcon } from '@heroicons/react/24/outline';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { useContext } from 'react';
 import { ShoppingCartContext } from '../../context';
-import { NavLink } from 'react-router-dom';
 
 const Card = (data) => {
   // Card . Change first letter to uppercase
@@ -10,11 +9,6 @@ const Card = (data) => {
 
   // Context .
   const context = useContext(ShoppingCartContext);
-
-  // Sign Out
-  const signOut = localStorage.getItem('sign-out');
-  const parsedSignOut = JSON.parse(signOut);
-  const isUserSignOut = context.signOut || parsedSignOut;
 
   const showProduct = (productDetail) => {
     context.openProductDetail();
@@ -30,41 +24,24 @@ const Card = (data) => {
   };
 
   const renderButton = (id) => {
-    if (!isUserSignOut) {
-      const isInCart =
-        context.cartProducts.filter((product) => product.id === id).length > 0;
+    const isInCart =
+      context.cartProducts.filter((product) => product.id === id).length > 0;
 
-      if (isInCart) {
-        return (
-          <button className='flex items-center justify-center w-full h-10 border border-black bg-white rounded-lg'>
-            <CheckCircleIcon className='h-6 w-6' />
-          </button>
-        );
-      } else {
-        return (
-          <button
-            className='flex items-center w-full h-10 px-4 border border-black bg-white rounded-lg'
-            onClick={(event) => addProductToCart(event, data.data)}
-          >
-            <PlusCircleIcon className='h-6 w-6' />
-            <span className='font-bold text-sm w-full'>Add to Cart</span>
-          </button>
-        );
-      }
+    if (isInCart) {
+      return (
+        <button className='flex items-center justify-center w-full h-10 border border-black bg-white rounded-lg'>
+          <CheckCircleIcon className='h-6 w-6' />
+        </button>
+      );
     } else {
       return (
-        <NavLink
-          className='w-full'
-          to={'/sign-in'}
+        <button
+          className='flex items-center w-full h-10 px-4 border border-black bg-white rounded-lg'
+          onClick={(event) => addProductToCart(event, data.data)}
         >
-          <button
-            className='flex items-center w-full h-10 px-4 border border-black bg-white rounded-lg'
-            onClick={(event) => addProductToCart(event, data.data)}
-          >
-            <PlusCircleIcon className='h-6 w-6' />
-            <span className='font-bold text-sm w-full'>Add to Cart</span>
-          </button>
-        </NavLink>
+          <PlusCircleIcon className='h-6 w-6' />
+          <span className='font-bold text-sm w-full'>Add to Cart</span>
+        </button>
       );
     }
   };
