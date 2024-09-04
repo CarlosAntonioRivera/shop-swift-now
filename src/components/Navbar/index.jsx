@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { ShoppingCartContext } from '../../context';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import ShoppingCart from '../ShoppingCart';
+import CategoryDropdwonMenu from '../CategoryDropdownMenu';
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext);
@@ -100,44 +101,8 @@ const Navbar = () => {
             ShopSwiftNow
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to='/'
-            onClick={() => context.setSearchByCategory()}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            All
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to='/clothes'
-            onClick={() => context.setSearchByCategory("men's clothing")}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Clothes
-          </NavLink>
-        </li>
 
-        <li>
-          <NavLink
-            to='/jewelery'
-            onClick={() => context.setSearchByCategory('jewelery')}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Jewelery
-          </NavLink>
-        </li>
-
-        <li>
-          <NavLink
-            to='/electronics'
-            onClick={() => context.setSearchByCategory('electronics')}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Electronics
-          </NavLink>
-        </li>
+        <CategoryDropdwonMenu />
       </ul>
 
       <ul className='flex items-center gap-5'>{renderView()}</ul>
