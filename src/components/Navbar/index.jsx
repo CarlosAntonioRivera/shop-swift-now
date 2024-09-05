@@ -74,10 +74,8 @@ const Navbar = () => {
   return (
     <nav className='flex justify-between items-center fixed z-10 top-0 w-full h-16 py-5 px-8 font-light bg-[#d1d5db]'>
       <ul className='flex items-center gap-5'>
-        <li className='font-semibold text-xl'>
-          <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>
-            ShopSwiftNow
-          </NavLink>
+        <li className='font-bold text-3xl'>
+          <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>EzzShop</NavLink>
         </li>
 
         <CategoryDropdwonMenu />

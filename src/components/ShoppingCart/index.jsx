@@ -10,15 +10,21 @@ const ShoppingCart = () => {
     context.closeProductDetail();
   };
 
+  const renderCountProducts = () => {
+    if (context.cartProducts.length > 0) {
+      return context.cartProducts.length;
+    }
+  };
+
   return (
     <div
       className='relative flex gap-0.5 items-center cursor-pointer'
       onClick={() => openCheckoutSideMenu()}
     >
-      <ShoppingCartIcon className='h-6 w-6 fill-none stroke-black' />
+      <ShoppingCartIcon className='h-7 w-7 fill-none stroke-black' />
 
-      <div className='absolute bottom-3.5 left-3.5 flex justify-center items-center rounded-full bg-black w-4 h-4 text-xs text-white'>
-        {context.cartProducts.length}
+      <div className='absolute bottom-4 left-4 flex justify-center items-center rounded-full bg-black w-4 h-4 text-xs text-white'>
+        {renderCountProducts()}
       </div>
     </div>
   );
