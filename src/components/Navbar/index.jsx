@@ -4,6 +4,7 @@ import { ShoppingCartContext } from '../../context';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import ShoppingCart from '../ShoppingCart';
 import CategoryDropdwonMenu from '../CategoryDropdownMenu';
+import AccountDropdwonMenu from '../AccountDropdownMenu';
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext);
@@ -42,35 +43,9 @@ const Navbar = () => {
     if (hasUserAnAccount && !isUserSignOut) {
       return (
         <>
-          <li className='text-black/60'>{parsedAccount?.email}</li>
-          <li>
-            <NavLink
-              to='/my-orders'
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              My Orders
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to='/my-account'
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              My Account
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to='/sign-in'
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
-              onClick={() => handleSignOut()}
-            >
-              Sign out
-            </NavLink>
-          </li>
-          <li className='flex items-center'>
-            <ShoppingCart />
-          </li>
+          <AccountDropdwonMenu />
+
+          <ShoppingCart />
         </>
       );
     } else {

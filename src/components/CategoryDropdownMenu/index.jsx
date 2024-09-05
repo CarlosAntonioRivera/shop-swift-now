@@ -95,7 +95,7 @@ const CategoryDropdwonMenu = () => {
     <div className='relative'>
       <button
         onClick={openDropdwonMenu}
-        className='flex items-center w-full px-4 py-2 border bor rounded-md hover:bg-white focus:outline-none'
+        className='flex items-center w-full px-2 py-2 rounded-md hover:bg-white focus:outline-none'
       >
         <span className='font-normal w-full'>Categories</span>
 

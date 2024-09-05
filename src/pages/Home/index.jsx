@@ -42,6 +42,7 @@ function Home() {
       <div className='grid grid-cols-auto-fit-minmax gap-4 justify-items-center w-full p-5'>
         {renderView()}
       </div>
+
       <ProductDetail />
     </Layout>
   );
