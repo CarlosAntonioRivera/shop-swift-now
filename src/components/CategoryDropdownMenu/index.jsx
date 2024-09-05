@@ -17,9 +17,9 @@ const CategoryDropdwonMenu = () => {
   const renderDropdwonMenu = () => {
     if (isDropdwonMenuOpen) {
       return (
-        <div className='absolute z-10 mt-1 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
-          <ul className='text-center p-2'>
-            <li>
+        <div className='absolute z-10 mt-2 w-36 p-5 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+          <ul className='text-left font-bold'>
+            <li className='mb-5'>
               <NavLink
                 to='/'
                 onClick={() => {
@@ -33,7 +33,8 @@ const CategoryDropdwonMenu = () => {
                 All
               </NavLink>
             </li>
-            <li>
+
+            <li className='mb-5'>
               <NavLink
                 to='/clothes'
                 onClick={() => {
@@ -48,7 +49,7 @@ const CategoryDropdwonMenu = () => {
               </NavLink>
             </li>
 
-            <li>
+            <li className='mb-5'>
               <NavLink
                 to='/jewelery'
                 onClick={() => {
@@ -85,10 +86,10 @@ const CategoryDropdwonMenu = () => {
 
   const renderIcon = () => {
     if (isDropdwonMenuOpen) {
-      return <ChevronUpIcon className='h-4 w-4 ml-1' />;
+      return <ChevronUpIcon className='h-3 w-3 ml-1' />;
     }
 
-    return <ChevronDownIcon className='h-4 w-4 ml-1' />;
+    return <ChevronDownIcon className='h-3 w-3 ml-1' />;
   };
 
   return (
@@ -97,7 +98,7 @@ const CategoryDropdwonMenu = () => {
         onClick={openDropdwonMenu}
         className='flex items-center w-full px-2 py-2 rounded-md hover:bg-white focus:outline-none'
       >
-        <span className='font-normal w-full'>Categories</span>
+        <span className='font-normal'>Categories</span>
 
         {renderIcon()}
       </button>

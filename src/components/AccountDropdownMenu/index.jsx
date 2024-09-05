@@ -1,4 +1,4 @@
-import { UserCircleIcon } from '@heroicons/react/24/solid';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
 import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ShoppingCartContext } from '../../context';
@@ -31,10 +31,9 @@ const AccountDropdwonMenu = () => {
   const renderDropdwonMenu = () => {
     if (isDropdwonMenuOpen) {
       return (
-        <div className='absolute right-0 z-10 mt-1 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
-          <ul className='text-right p-2'>
-            <li className='text-black/60'>{parsedAccount?.email}</li>
-            <li>
+        <div className='absolute right-0 z-10 mt-2 w-36 p-5 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+          <ul className='text-right font-bold'>
+            <li className='mb-5'>
               <NavLink
                 to='/my-orders'
                 onClick={() => openDropdwonMenu()}
@@ -42,10 +41,10 @@ const AccountDropdwonMenu = () => {
                   isActive ? activeStyle : undefined
                 }
               >
-                My Orders
+                My orders
               </NavLink>
             </li>
-            <li>
+            <li className='mb-5'>
               <NavLink
                 to='/my-account'
                 onClick={() => openDropdwonMenu()}
@@ -53,10 +52,13 @@ const AccountDropdwonMenu = () => {
                   isActive ? activeStyle : undefined
                 }
               >
-                My Account
+                My account
               </NavLink>
             </li>
-            <li>
+
+            <hr />
+
+            <li className='pt-5'>
               <NavLink
                 to='/sign-in'
                 className={({ isActive }) =>
@@ -73,15 +75,23 @@ const AccountDropdwonMenu = () => {
     }
   };
 
+  const renderIcon = () => {
+    if (isDropdwonMenuOpen) {
+      return <ChevronUpIcon className='h-3 w-3 ml-1' />;
+    }
+
+    return <ChevronDownIcon className='h-3 w-3 ml-1' />;
+  };
+
   return (
     <div className='relative'>
       <button
         onClick={openDropdwonMenu}
-        className='flex items-center w-full px-4 py-2 border bor rounded-full hover:bg-white focus:outline-none'
+        className='flex items-center w-full px-2 py-2 rounded-md hover:bg-white focus:outline-none'
       >
-        <UserCircleIcon className='h-6 w-6 mr-1' />
+        <span className='font-normal'>{parsedAccount?.email}</span>
 
-        <span className='font-normal w-full'>Account</span>
+        {renderIcon()}
       </button>
 
       {renderDropdwonMenu()}

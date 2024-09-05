@@ -1,7 +1,10 @@
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ShoppingCartContext } from '../../context';
-import { ShoppingCartIcon } from '@heroicons/react/24/outline';
+import {
+  ShoppingCartIcon,
+  MagnifyingGlassIcon,
+} from '@heroicons/react/24/outline';
 import ShoppingCart from '../ShoppingCart';
 import CategoryDropdwonMenu from '../CategoryDropdownMenu';
 import AccountDropdwonMenu from '../AccountDropdownMenu';
@@ -69,7 +72,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 font-light bg-[#d1d5db]'>
+    <nav className='flex justify-between items-center fixed z-10 top-0 w-full h-16 py-5 px-8 font-light bg-[#d1d5db]'>
       <ul className='flex items-center gap-5'>
         <li className='font-semibold text-xl'>
           <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>
@@ -79,6 +82,21 @@ const Navbar = () => {
 
         <CategoryDropdwonMenu />
       </ul>
+
+      <div className='flex justify-center w-full'>
+        <div className='relative flex items-center w-3/5'>
+          <input
+            type='text'
+            className='w-full font-normal pl-10 pr-4 py-2 bg-white border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+            placeholder='Search a product'
+            onChange={(event) => context.setSearchByTitle(event.target.value)}
+          />
+
+          <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
+            <MagnifyingGlassIcon className='w-5 h-5 text-gray-500' />
+          </div>
+        </div>
+      </div>
 
       <ul className='flex items-center gap-5'>{renderView()}</ul>
     </nav>

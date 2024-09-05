@@ -28,7 +28,7 @@ function Home() {
 
   return (
     <Layout>
-      <div className='flex items-center justify-center relative w-80 mb-4'>
+      {/* <div className='flex items-center justify-center relative w-80 mb-4'>
         <h1 className='font-medium text-2xl'>Exclusive Products</h1>
       </div>
 
@@ -37,7 +37,7 @@ function Home() {
         placeholder='Search a product'
         className='rounded-lg border border-black w-96 p-4 mb-6 focus:placeholder:text-transparent'
         onChange={(event) => context.setSearchByTitle(event.target.value)}
-      />
+      /> */}
 
       <div className='grid grid-cols-auto-fit-minmax gap-4 justify-items-center w-full p-5'>
         {renderView()}
