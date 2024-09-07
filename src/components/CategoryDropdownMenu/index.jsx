@@ -98,7 +98,7 @@ const CategoryDropdwonMenu = () => {
         onClick={openDropdwonMenu}
         className='flex items-center w-full px-2 py-2 rounded-md hover:bg-white focus:outline-none'
       >
-        <span className='font-normal'>Categories</span>
+        <span>Categories</span>
 
         {renderIcon()}
       </button>

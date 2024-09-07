@@ -53,7 +53,7 @@ const Navbar = () => {
       );
     } else {
       return (
-        <>
+        <ul className='flex justify-between w-24'>
           <li>
             <NavLink
               to='/sign-in'
@@ -63,16 +63,17 @@ const Navbar = () => {
               Sign in
             </NavLink>
           </li>
+
           <li className='flex items-center'>
-            <ShoppingCartIcon className='h-6 w-6' />
+            <ShoppingCartIcon className='h-7 w-7' />
           </li>
-        </>
+        </ul>
       );
     }
   };
 
   return (
-    <nav className='flex justify-between items-center fixed z-10 top-0 w-full h-16 py-5 px-8 font-light bg-[#d1d5db]'>
+    <nav className='flex justify-between items-center fixed z-10 top-0 w-full h-16 py-5 px-8 bg-[#d1d5db]'>
       <ul className='flex items-center gap-5'>
         <li className='font-bold text-3xl'>
           <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>EzzShop</NavLink>

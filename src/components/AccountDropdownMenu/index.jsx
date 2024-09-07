@@ -84,12 +84,12 @@ const AccountDropdwonMenu = () => {
   };
 
   return (
-    <div className='relative'>
+    <div className='relative w-52'>
       <button
         onClick={openDropdwonMenu}
         className='flex items-center w-full px-2 py-2 rounded-md hover:bg-white focus:outline-none'
       >
-        <span className='font-normal'>{parsedAccount?.email}</span>
+        <span className='truncate'>{parsedAccount?.email}</span>
 
         {renderIcon()}
       </button>
