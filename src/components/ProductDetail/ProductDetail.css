@@ -1,5 +1,8 @@
 .product-detail {
-  width: 360px;
-  height: calc(100vh - 68px);
-  top: 68px;
+  width: calc(100vw - 73%);
+  /* width: calc(100vw - 60%); */
+  /* width: 100vw; */
+  height: calc(100vh - 4rem);
+  /* height: 100vh; */
+  top: 4rem;
 }

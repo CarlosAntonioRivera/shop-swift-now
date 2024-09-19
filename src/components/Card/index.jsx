@@ -20,7 +20,6 @@ const Card = (data) => {
     context.setCount(context.count + 1);
     context.setCartProducts([...context.cartProducts, productData]);
     context.openCheckoutSideMenu();
-    context.closeProductDetail();
   };
 
   const renderButton = (id) => {
@@ -29,7 +28,10 @@ const Card = (data) => {
 
     if (isInCart) {
       return (
-        <button className='flex items-center justify-center w-full h-10 border border-black bg-white rounded-lg'>
+        <button
+          className='flex items-center justify-center w-full h-10 border border-black bg-white rounded-lg'
+          onClick={() => context.openCheckoutSideMenu()}
+        >
           <CheckCircleIcon className='h-6 w-6' />
         </button>
       );

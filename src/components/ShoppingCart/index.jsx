@@ -5,11 +5,6 @@ import { ShoppingCartContext } from '../../context';
 const ShoppingCart = () => {
   const context = useContext(ShoppingCartContext);
 
-  const openCheckoutSideMenu = () => {
-    context.openCheckoutSideMenu();
-    context.closeProductDetail();
-  };
-
   const renderCountProducts = () => {
     if (context.cartProducts.length > 0) {
       return context.cartProducts.length;
@@ -19,7 +14,11 @@ const ShoppingCart = () => {
   return (
     <div
       className='relative flex gap-0.5 items-center cursor-pointer'
-      onClick={() => openCheckoutSideMenu()}
+      onClick={() => {
+        context.cartProducts.length > 0
+          ? context.openCheckoutSideMenu()
+          : context.closeCheckoutSideMenu();
+      }}
     >
       <ShoppingCartIcon className='h-7 w-7 fill-none stroke-black' />
 

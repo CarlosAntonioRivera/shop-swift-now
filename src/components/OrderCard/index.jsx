@@ -15,21 +15,21 @@ const OrderCard = (props) => {
   }
 
   return (
-    <div className='flex justify-between items-center mb-3 rounded-lg bg-[#e5e7eb] h-24 px-2'>
-      <div className='flex items-center gap-2'>
+    <div className='flex justify-between items-center mb-3 border rounded-lg h-24 w-full px-2'>
+      <div className='flex items-center gap-2 w-full min-w-0'>
         <figure className='w-20 h-20'>
           <img
-            className='w-full h-full rounded-lg object-contain'
+            className='w-full h-full object-contain'
             src={imageURL}
             alt={title}
           />
         </figure>
 
-        <p className='text-sm font-light mx-2 line-clamp-3 w-28'>{title}</p>
+        <p className='text-sm font-medium mx-2 truncate flex-1'>{title}</p>
       </div>
 
       <div className='flex items-center gap-2'>
-        <p className='text-lg font-medium'>${price}</p>
+        <p className='text-lg font-bold'>${price}</p>
 
         {renderXIcon}
       </div>

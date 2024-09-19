@@ -1,4 +1,4 @@
-import { XCircleIcon } from '@heroicons/react/24/outline';
+import { XCircleIcon } from '@heroicons/react/24/solid';
 import { useContext } from 'react';
 import { ShoppingCartContext } from '../../context';
 import { Link } from 'react-router-dom';
@@ -14,6 +14,10 @@ const CheckoutSideMenu = () => {
       (product) => product.id !== id
     );
     context.setCartProducts(filteredProducts);
+
+    if (context.cartProducts.length <= 1) {
+      context.closeCheckoutSideMenu();
+    }
   };
 
   const handleCheckout = () => {
@@ -34,18 +38,18 @@ const CheckoutSideMenu = () => {
     <aside
       className={`${
         context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'
-      } checkout-side-menu scrollable-cards flex-col fixed right-0 border-l-2 bg-white`}
+      } checkout-side-menu scrollable-cards flex-col fixed right-0 border-l bg-white`}
     >
-      <div className='flex justify-between items-center px-5 py-4'>
-        <h2 className='font-medium text-xl'>My Order</h2>
+      <section className='flex justify-between items-center px-5 py-4 h-[10%]'>
+        <h2 className='font-bold text-xl'>My Order</h2>
 
         <XCircleIcon
           className='h-6 w-6 cursor-pointer'
           onClick={() => context.closeCheckoutSideMenu()}
         />
-      </div>
+      </section>
 
-      <div className='px-2 overflow-y-scroll flex-1'>
+      <section className='px-2 overflow-y-scroll flex-1'>
         {context.cartProducts.map((product) => (
           <OrderCard
             key={product.id}
@@ -56,25 +60,25 @@ const CheckoutSideMenu = () => {
             handleDelete={handleDelete}
           />
         ))}
-      </div>
+      </section>
 
-      <div className='px-6'>
+      <section className='px-6 pt-1'>
         <p className='flex justify-between items-center mb-2'>
-          <span className='font-light'>Total:</span>
-          <span className='font-medium text-2xl'>
+          <span className='font-bold'>Total:</span>
+          <span className='font-bold text-2xl'>
             ${totalPrice(context.cartProducts)}
           </span>
         </p>
 
         <Link to='/my-orders/last'>
           <button
-            className='bg-black py-3 text-white w-full rounded-lg mb-4 font-medium'
+            className='bg-black py-3 text-white w-full rounded-lg mb-4 font-semibold'
             onClick={() => handleCheckout()}
           >
             Checkout
           </button>
         </Link>
-      </div>
+      </section>
     </aside>
   );
 };
