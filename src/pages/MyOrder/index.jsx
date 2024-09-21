@@ -27,7 +27,7 @@ function MyOrder() {
             <ChevronLeftIcon className='h-6 w-6' />
           </Link>
 
-          <h1 className='font-medium text-2xl'>My Order</h1>
+          <h1 className='font-semibold text-2xl'>My Order</h1>
         </div>
 
         <div className='flex flex-col w-80'>
