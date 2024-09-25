@@ -84,7 +84,7 @@ const AccountDropdwonMenu = () => {
   };
 
   return (
-    <div className='relative w-52'>
+    <div className='relative max-w-52'>
       <button
         onClick={openDropdwonMenu}
         className='flex items-center w-full px-2 py-2 rounded-md hover:bg-white focus:outline-none'

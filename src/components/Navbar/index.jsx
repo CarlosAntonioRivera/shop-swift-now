@@ -75,8 +75,14 @@ const Navbar = () => {
   return (
     <nav className='flex justify-between items-center fixed z-10 top-0 w-full h-16 py-5 px-8 bg-[#d1d5db]'>
       <ul className='flex items-center gap-5'>
-        <li className='font-bold text-3xl'>
-          <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>EzzShop</NavLink>
+        <li>
+          <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>
+            <img
+              src='src\assets\logo.png'
+              alt='Logo'
+              className='w-72'
+            />
+          </NavLink>
         </li>
 
         <CategoryDropdwonMenu />

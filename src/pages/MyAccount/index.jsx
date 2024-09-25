@@ -1,3 +1,4 @@
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { useContext, useRef, useState } from 'react';
 import { ShoppingCartContext } from '../../context';
 import Layout from '../../components/Layout';
@@ -5,11 +6,18 @@ import Layout from '../../components/Layout';
 function MyAccount() {
   const context = useContext(ShoppingCartContext);
 
+  const [showPassword, setShowPassword] = useState(false);
+
   const [view, setView] = useState('user-info');
 
   // Account
   const account = localStorage.getItem('account');
   const parsedAccount = JSON.parse(account);
+
+  // Show Password
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   // Edit Account Form
   const form = useRef(null);
@@ -30,22 +38,73 @@ function MyAccount() {
 
   const renderUserInfo = () => {
     return (
-      <div className='flex flex-col gap-4 w-96 p-5 bg-[#d1d5db] rounded-lg'>
-        <p>
-          <span className='font-medium text-sm'>Name: </span>
-          <span>{parsedAccount?.name}</span>
-        </p>
-        <p>
-          <span className='font-medium text-sm'>Email: </span>
-          <span>{parsedAccount?.email}</span>
-        </p>
+      <section className='flex flex-col gap-5 w-96 p-6 border border-black rounded-lg'>
+        <div className='flex flex-col gap-1'>
+          <label
+            htmlFor='name'
+            className='font-semibold text-lg'
+          >
+            Name
+          </label>
+
+          <input
+            value={parsedAccount?.name}
+            readOnly
+            className='w-full bg-transparent border-none focus:outline-none'
+          />
+        </div>
+
+        <div className='flex flex-col gap-1'>
+          <label
+            htmlFor='email'
+            className='font-semibold text-lg'
+          >
+            Email
+          </label>
+
+          <input
+            value={parsedAccount?.email}
+            readOnly
+            className='w-full bg-transparent border-none focus:outline-none'
+          />
+        </div>
+
+        <div className='flex flex-col gap-1'>
+          <label
+            htmlFor='password'
+            className='font-semibold text-lg'
+          >
+            Password
+          </label>
+
+          <div className='flex justify-between'>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={parsedAccount?.password}
+              readOnly
+              className='w-full bg-transparent border-none focus:outline-none'
+            />
+
+            <button
+              onClick={togglePasswordVisibility}
+              className='ml-2'
+            >
+              {showPassword ? (
+                <EyeSlashIcon className='h-6 w-6' />
+              ) : (
+                <EyeIcon className='h-6 w-6' />
+              )}
+            </button>
+          </div>
+        </div>
+
         <button
-          className='border border-black bg-white rounded-lg mt-4 py-3'
+          className='border border-black font-bold rounded-lg py-3'
           onClick={() => setView('edit-user-info')}
         >
           Edit
         </button>
-      </div>
+      </section>
     );
   };
 
@@ -53,64 +112,85 @@ function MyAccount() {
     return (
       <form
         ref={form}
-        className='flex flex-col gap-4 w-96 p-5 bg-[#d1d5db] rounded-lg'
+        className='flex flex-col gap-5 w-96 p-6 border border-black rounded-lg'
       >
         <div className='flex flex-col gap-1'>
           <label
             htmlFor='name'
-            className='font-normal text-sm'
+            className='font-semibold text-lg'
           >
-            Name:
+            Name
           </label>
+
           <input
             type='text'
             id='name'
             name='name'
             defaultValue={parsedAccount?.name}
-            placeholder='Armando Casas'
-            className='rounded-lg border border-black placeholder:font-light placeholder:text-sm placeholder:text-black/60 focus:outline-none focus:placeholder:text-transparent py-2 px-4'
+            placeholder='Full name'
+            className='rounded-lg bg-[#F7F7F7] placeholder:text-sm focus:outline-none focus:placeholder:text-transparent py-2 px-4'
           />
         </div>
+
         <div className='flex flex-col gap-1'>
           <label
             htmlFor='email'
-            className='font-normal text-sm'
+            className='font-semibold text-lg'
           >
-            Email:
+            Email
           </label>
+
           <input
             type='text'
             id='email'
             name='email'
             defaultValue={parsedAccount?.email}
-            placeholder='hi@example.com'
-            className='rounded-lg border border-black placeholder:font-light placeholder:text-sm placeholder:text-black/60 focus:outline-none focus:placeholder:text-transparent py-2 px-4'
-          />
-        </div>
-        <div className='flex flex-col gap-1'>
-          <label
-            htmlFor='password'
-            className='font-normal text-sm'
-          >
-            Password:
-          </label>
-          <input
-            type='password'
-            id='password'
-            name='password'
-            defaultValue={parsedAccount?.password}
-            placeholder='*******'
-            className='rounded-lg border border-black placeholder:font-light placeholder:text-sm placeholder:text-black/60 focus:outline-none focus:placeholder:text-transparent py-2 px-4'
+            placeholder='email@address.com'
+            className='rounded-lg bg-[#F7F7F7] placeholder:text-sm focus:outline-none focus:placeholder:text-transparent py-2 px-4'
           />
         </div>
 
+        <div className='flex flex-col gap-1'>
+          <label
+            htmlFor='password'
+            className='font-semibold text-lg'
+          >
+            Password
+          </label>
+
+          <div className='flex w-full'>
+            <div className='flex justify-between items-center w-full'>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id='password'
+                name='password'
+                defaultValue={parsedAccount?.password}
+                placeholder='*******'
+                className='w-full rounded-lg bg-[#F7F7F7] placeholder:text-sm focus:outline-none focus:placeholder:text-transparent py-2 px-4'
+              />
+
+              <button
+                type='button'
+                onClick={togglePasswordVisibility}
+                className='ml-2'
+              >
+                {showPassword ? (
+                  <EyeSlashIcon className='h-6 w-6' />
+                ) : (
+                  <EyeIcon className='h-6 w-6' />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
         <button
-          className='bg-black text-white w-full rounded-lg py-3'
+          className='bg-black text-white font-bold w-full rounded-lg py-3'
           onClick={() => {
             setView('user-info'), editAccount();
           }}
         >
-          Edit
+          Save
         </button>
       </form>
     );
@@ -121,7 +201,9 @@ function MyAccount() {
 
   return (
     <Layout>
-      <h1 className='font-medium text-xl text-center mb-6 w-80'>My Account</h1>
+      <h1 className='font-semibold text-2xl text-center mb-6 w-80'>
+        My Account
+      </h1>
 
       {renderView()}
     </Layout>
